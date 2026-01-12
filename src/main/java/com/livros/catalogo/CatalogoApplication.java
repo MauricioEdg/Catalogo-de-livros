@@ -16,7 +16,7 @@ public class CatalogoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		ConsumoApi consumoApi = new ConsumoApi();
-		var json = consumoApi.obterDados("gutendex.com/books?ids=11");
+		var json = consumoApi.obterDados("https://gutendex.com/books/?ids=11");
 		System.out.println(json);
 	}
 }
