@@ -1,8 +1,7 @@
 package com.livros.catalogo;
 
 import com.livros.catalogo.model.ResponseApi;
-import com.livros.catalogo.services.Autor;
-import com.livros.catalogo.services.DadosLivro;
+import com.livros.catalogo.model.Autor;
 import com.livros.catalogo.services.ConsumoApi;
 import com.livros.catalogo.services.ConverteDados;
 import org.springframework.boot.CommandLineRunner;

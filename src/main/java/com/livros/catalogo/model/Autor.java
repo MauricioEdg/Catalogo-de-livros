@@ -1,4 +1,4 @@
-package com.livros.catalogo.services;
+package com.livros.catalogo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
