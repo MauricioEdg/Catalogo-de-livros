@@ -37,6 +37,58 @@ public class CatalogoApplication implements CommandLineRunner {
 			System.out.println(nomeLivro);
 		});
 
+		/*
+		Menu usuário
+		1 - buscar livro pelo titulo (unica opção que busca diretamente na api)
+			livro[
+				titulo
+				autor
+				idioma
+				numero de downloads
+				]
+			autor[ (buscado junto na opção 1, mas nao mostrado, apenas salvo no bd)
+				nome
+				ano de nascimento
+				ano de falecimento
+				livros[]
+				]
+
+		2 - listar livros registrados
+			livro[
+				titulo
+				autor
+				idioma
+				numero de downloads
+				]
+
+		3 - listar autores registrados
+			autor[
+				nome
+				ano de nascimento
+				ano de falecimento
+				livros[]
+				]
+
+		4 - listar autores vivos em um determinado ano
+			autor[
+				nome
+				ano de nascimento
+				ano de falecimento
+				livros[]
+				]
+
+		5 - listar livros em um determinado idioma
+			es - espanhol
+			en - inglês
+			fr - francês
+			pt - português
+
+		0 - Sair
+
+
+
+		 */
+
 
 	}
 }
