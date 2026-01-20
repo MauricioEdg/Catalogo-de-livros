@@ -10,10 +10,10 @@ public record Autor(
         @JsonAlias("name")
         String name,
         @JsonAlias("birth_year")
-        Integer AnoNascimento,
+        Integer anoNascimento,
         @JsonAlias("death_year")
-        Integer AnoFalecimento,
-        @JsonAlias("subjects")
-        List<String> livro
+        Integer anoFalecimento
+
+
 ) {
 }

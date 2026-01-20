@@ -1,40 +1,55 @@
 package com.livros.catalogo;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.livros.catalogo.model.ResponseApi;
-import com.livros.catalogo.model.Autor;
 import com.livros.catalogo.services.ConsumoApi;
 import com.livros.catalogo.services.ConverteDados;
+import com.livros.catalogo.view.MenuView;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Service;
 
+@Service
 @SpringBootApplication
 public class CatalogoApplication implements CommandLineRunner {
-
+	private final MenuView menuView;
 	public static void main(String[] args) {
 		SpringApplication.run(CatalogoApplication.class, args);
 	}
 
-
+	public CatalogoApplication(MenuView menuView) {
+		this.menuView = menuView;
+	}
 	@Override
 	public void run(String... args) throws Exception {
-		ConsumoApi consumoApi = new ConsumoApi();
+
+		/*ConsumoApi consumoApi = new ConsumoApi();
 		var json = consumoApi.obterDados("https://gutendex.com/books/?ids=11");
 		System.out.println(json);
 		ConverteDados conversor = new ConverteDados();
 		ResponseApi dados = conversor.obterDados(json, ResponseApi.class);
+		dados.livroResults().forEach(livro ->{
+			System.out.println("livro: " + livro.nomeLivro());
+			System.out.println("nascimento: " + livro.numeroDownloads());
+			System.out.println("idiomas: " + livro.idioma());
+			livro.autor().forEach( autor ->{
+						System.out.println("autor: " + autor.name());
+						System.out.println("nascimento: " + autor.anoNascimento());
+						System.out.println("falecimento: " + autor.anoFalecimento());
+					}
+					);
 
-		dados.results().forEach(livro ->{
-			String nomeLivro = livro.nomeLivro();
+        });*/
+        System.out.println("------------------------------------------------------------------------");
+            try {
+                menuView.exibirMenu();
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
 
-			String nomeAutor = livro.autor().stream()
-					.findFirst()
-					.map(Autor::name)
-					.orElse("Autor nao encontrado");
 
-			System.out.println(nomeAutor);
-			System.out.println(nomeLivro);
-		});
+
 
 		/*
 		Menu usuário
