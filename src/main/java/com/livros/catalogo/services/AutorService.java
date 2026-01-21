@@ -1,6 +1,7 @@
 package com.livros.catalogo.services;
 
 import com.livros.catalogo.model.AutorEntity;
+import com.livros.catalogo.model.LivroEntity;
 import com.livros.catalogo.repository.AutorRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +26,13 @@ public class AutorService {
 
     public Optional<AutorEntity> buscarPorNome(String nome) {
         return autorRepository.findByNameIgnoreCase(nome);
+    }
+
+    public List<LivroEntity> buscarLivros(Long id) {
+        return autorRepository.buscarLivrosDeAutores(id);
+    }
+
+    public List<AutorEntity> buscarAutoresVivosNoAno(int ano) {
+        return autorRepository.buscarAutoresVivosNoAno(ano);
     }
 }

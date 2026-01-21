@@ -1,8 +1,10 @@
 package com.livros.catalogo.view;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.livros.catalogo.model.AutorEntity;
 import com.livros.catalogo.model.LivroEntity;
 import com.livros.catalogo.model.ResponseApi;
+import com.livros.catalogo.services.AutorService;
 import com.livros.catalogo.services.ConsumoApi;
 import com.livros.catalogo.services.ConverteDados;
 import com.livros.catalogo.services.LivroService;
@@ -15,15 +17,18 @@ import java.util.Scanner;
 public class MenuView {
 
     private final LivroService livroService;
+    private final AutorService autorService;
 
-    public MenuView(LivroService livroService) {
+    public MenuView(LivroService livroService, AutorService autorService) {
         this.livroService = livroService;
+        this.autorService = autorService;
     }
 
     public void exibirMenu() throws JsonProcessingException {
         Scanner scanner = new Scanner(System.in);
         ConsumoApi consumoApi = new ConsumoApi();
         ConverteDados conversor = new ConverteDados();
+
         int opcao;
 
         do {
@@ -92,6 +97,48 @@ public class MenuView {
                     }
                     break;
 
+
+                case 3:
+                    System.out.println("======== Mostrando autores salvos =========");
+                    System.out.println("--------------");
+                    List<AutorEntity> autores = autorService.listarTodos();
+
+                    if(autores.isEmpty()){
+                        System.out.println("Nenhum autor encontrado");
+                    }else{
+                        autores.forEach(a ->{
+                            System.out.println("Nome do autor(a): "+a.getName());
+                            System.out.println("----------------");
+                            System.out.println("Ano de nascimento: "+a.getAnoNascimento());
+                            System.out.println("------------------");
+                            System.out.println("Ano de falecimento: "+a.getAnoFalecimento());
+                            System.out.println("--------------------");
+
+                            List<LivroEntity> livrosAutores = autorService.buscarLivros(a.getId());
+                            System.out.println("Livros: ");
+                            livrosAutores.forEach(i -> {
+                                System.out.println("- " + i.getNomeLivro());
+                            });
+                            System.out.println("-----------------------");
+                        });
+                    }
+
+                case 4:
+                    System.out.println(" ===== Digite o ano: ");
+                    Integer ano = scanner.nextInt();
+                    scanner.nextLine();
+
+                    List<AutorEntity> autoresAno = autorService.buscarAutoresVivosNoAno(ano);
+
+                    if (autoresAno.isEmpty()) {
+                        System.out.println("Nenhum autor estava vivo nesse ano.");
+                    } else {
+                        System.out.println("Autores vivos em " + ano + ":");
+                        autoresAno.forEach(a ->
+                                System.out.println("- " + a.getName())
+                        );
+                    }
+                    break;
                 case 0:
                     System.out.println("Encerrando o sistema...");
                     break;
