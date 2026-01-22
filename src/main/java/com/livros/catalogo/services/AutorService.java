@@ -6,7 +6,6 @@ import com.livros.catalogo.repository.AutorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 @Service
 public class AutorService {
 
@@ -16,16 +15,8 @@ public class AutorService {
         this.autorRepository = autorRepository;
     }
 
-    public AutorEntity salvar(AutorEntity autor) {
-        return autorRepository.save(autor);
-    }
-
     public List<AutorEntity> listarTodos() {
         return autorRepository.findAll();
-    }
-
-    public Optional<AutorEntity> buscarPorNome(String nome) {
-        return autorRepository.findByNameIgnoreCase(nome);
     }
 
     public List<LivroEntity> buscarLivros(Long id) {

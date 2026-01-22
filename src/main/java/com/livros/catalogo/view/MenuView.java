@@ -92,26 +92,22 @@ public class MenuView {
                                 System.out.println("- " + i);
                             });
                         });
-
-
                     }
                     break;
-
-
                 case 3:
                     System.out.println("======== Mostrando autores salvos =========");
                     System.out.println("--------------");
                     List<AutorEntity> autores = autorService.listarTodos();
 
-                    if(autores.isEmpty()){
+                    if (autores.isEmpty()) {
                         System.out.println("Nenhum autor encontrado");
-                    }else{
-                        autores.forEach(a ->{
-                            System.out.println("Nome do autor(a): "+a.getName());
+                    } else {
+                        autores.forEach(a -> {
+                            System.out.println("Nome do autor(a): " + a.getName());
                             System.out.println("----------------");
-                            System.out.println("Ano de nascimento: "+a.getAnoNascimento());
+                            System.out.println("Ano de nascimento: " + a.getAnoNascimento());
                             System.out.println("------------------");
-                            System.out.println("Ano de falecimento: "+a.getAnoFalecimento());
+                            System.out.println("Ano de falecimento: " + a.getAnoFalecimento());
                             System.out.println("--------------------");
 
                             List<LivroEntity> livrosAutores = autorService.buscarLivros(a.getId());
@@ -122,9 +118,8 @@ public class MenuView {
                             System.out.println("-----------------------");
                         });
                     }
-
                 case 4:
-                    System.out.println(" ===== Digite o ano: ");
+                    System.out.println("Digite o ano: ");
                     Integer ano = scanner.nextInt();
                     scanner.nextLine();
 
@@ -137,6 +132,21 @@ public class MenuView {
                         autoresAno.forEach(a ->
                                 System.out.println("- " + a.getName())
                         );
+                    }
+                    break;
+                case 5:
+                    System.out.println("Digite um idioma para buscar livros: \n" +
+                            "es - espanhol \n" +
+                            "en - inglês \n" +
+                            "fr - francês \n" +
+                            "pt - português ");
+                    String idioma = scanner.next();
+                    List<LivroEntity> idiomas = livroService.buscaLivroIdioma(idioma);
+
+                    if (idiomas.isEmpty()) {
+                        System.out.println("Nenhum livro encontrado nesse idioma.");
+                    } else {
+                        idiomas.forEach(l -> System.out.println("- " + l.getNomeLivro()));
                     }
                     break;
                 case 0:

@@ -21,6 +21,13 @@ public interface LivroRepository extends JpaRepository<LivroEntity, Long> {
     FROM LivroEntity l
     JOIN l.idioma i
     WHERE l.id = :id
-""")
+    """)
     List<String> buscarIdiomasPorLivro(@Param("id") Long id);
+
+    @Query("""
+    SELECT l
+    FROM LivroEntity l
+    WHERE :idioma MEMBER OF l.idioma
+    """)
+    List<LivroEntity> buscarLivrosPorIdioma(@Param("idioma") String idioma);
 }

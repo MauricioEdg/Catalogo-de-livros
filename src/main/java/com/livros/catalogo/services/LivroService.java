@@ -53,6 +53,10 @@ public class LivroService {
     public List<String> buscarIdiomasPorLivro(Long id) {
         return livroRepository.buscarIdiomasPorLivro(id);
     }
+    public List<LivroEntity> buscaLivroIdioma(String idioma){
+        return livroRepository.buscarLivrosPorIdioma(idioma);
+    }
+
 
 }
 
