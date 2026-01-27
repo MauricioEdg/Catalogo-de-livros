@@ -1,5 +1,5 @@
 # 📕 Catálogo de livros
-Projeto desenvolvido em Jaca com Srping Boot, que vonsome a API pública Gutendex para consulta de livros do Project Gutenberg, permitindo o armazenamento local, filtros avançados e listagens personalizadas através de um menu interativo no terminal.
+Projeto desenvolvido em Java com Spring Boot, que consome a API pública Gutendex para consulta de livros do Project Gutenberg, permitindo o armazenamento local, filtros avançados e listagens personalizadas através de um menu interativo no terminal.
 O sistema foi projetado com foco em boas práticas de arquitetura, persistência com JPA/Hibernate e consultas avançadas em JPQL.
 ---
 # 📝 Funcionalidades
